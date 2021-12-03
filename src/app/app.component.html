@@ -1,0 +1,42 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="app.component.css">
+</head>
+<nav class="navbar navbar-expand navbar-dark" id="menu" >
+  <img src="https://www.freeiconspng.com/uploads/popcorn-png-7.png" width="50" height="50"/>
+  <a class="navbar-brand" style="color: #ffffff;" href="/home">MOVIESTAR</a>
+  <div class="navbar-nav ml-auto">
+    <mat-toolbar-row>
+      <button mat-button [matMenuTriggerFor]="menu" style="background-color: #203A43;">
+        <span style="margin-right: 10px" [matBadge]="productos.length+''" matBadgeOverlap="false"
+              matBadgePosition="below after" matBadgeColor="accent" style="color:#ffffff">Carrito </span>      
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngFor="let p of productos;">{{p.title}}  {{p.rental_rate | currency}}</button>
+        <button mat-menu-item>
+          <strong>Total: {{total() | currency}}</strong>
+        </button>
+        <a *ngIf="productos.length > 0" mat-menu-item routerLink="/cart">
+          <mat-icon>shopping_cart</mat-icon>
+          Terminar compra</a>
+      </mat-menu>
+      <img src="https://cdn-icons-png.flaticon.com/512/1656/1656507.png" width="30" height="30"/> 
+    </mat-toolbar-row>
+  </div>
+  <div class="navbar-nav ml-auto">
+      <li class="nav-item" routerLink="read" routerLinkActive="active">
+          <a class="nav-link" style="color: #ffffff;" [routerLink]="['/login']">Ingresar</a>
+      </li>
+      <li class="nav-item" routerLink="create" routerLinkActive="active">
+          <a class="nav-link" style="color: #ffffff;" [routerLink]="['/register']">Crear cuenta</a>
+      </li>
+  </div>   
+</nav>
+      <router-outlet></router-outlet>
+  
+
